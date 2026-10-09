@@ -1,23 +1,30 @@
-
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
 struct ListNode* mergeKLists(struct ListNode** lists, int listsSize) {
+    if (listsSize == 0 || lists == NULL) return NULL; 
     struct ListNode dummy;
-    struct ListNode* tail = &dummy;
     dummy.next = NULL;
-    
+    struct ListNode* tail = &dummy;
     while (1) {
-        int min_idx = -1;
+        int minIndex = -1;
+        int minVal = 10001; 
         for (int i = 0; i < listsSize; i++) {
-            if (lists[i] != NULL) {
-                if (min_idx == -1 || lists[i]->val < lists[min_idx]->val) {
-                    min_idx = i;
-                }
+            if (lists[i] != NULL && lists[i]->val < minVal) {
+                minVal = lists[i]->val;
+                minIndex = i;
             }
         }
-        if (min_idx == -1) break; 
-        
-        tail->next = lists[min_idx];
+        if (minIndex == -1) {
+            break;
+        }
+        tail->next = lists[minIndex];
         tail = tail->next;
-        lists[min_idx] = lists[min_idx]->next;
+        lists[minIndex] = lists[minIndex]->next;
     }
     return dummy.next;
 }
