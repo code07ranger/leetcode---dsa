@@ -11,7 +11,7 @@
 
 struct ListNode* reverseBetween(struct ListNode* head, int left, int right) {
     if (!head || left == right) {
-      
+        return head;
     }
     struct ListNode dummy;
     dummy.val=0;
