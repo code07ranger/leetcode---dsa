@@ -9,8 +9,8 @@ class Solution {
         for (int i=0;i<nums.length;i++) { 
             if(nums[i]==target){
                 ans.add(i);
-            // } else if(nums[i]>target){
-            //     break; 
+            } else if(nums[i]>target){
+                break; 
             }
         }
         return ans;
