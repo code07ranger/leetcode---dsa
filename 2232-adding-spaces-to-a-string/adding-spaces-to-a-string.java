@@ -1,11 +1,13 @@
 class Solution {
     public String addSpaces(String s, int[] spaces) {
-        String result = ""; 
-        StringBuilder sb = new StringBuilder(s);
-        int offset = 0;
-        for (int space : spaces) {
-            sb.insert(space + offset, ' ');
-            offset++;
+        StringBuilder sb=new StringBuilder(s.length()+spaces.length);
+        int spidx=0;
+        for(int i=0;i<s.length();i++){
+            if (spidx<spaces.length && i==spaces[spidx]) {
+                sb.append(' ');
+                spidx++;
+            }
+            sb.append(s.charAt(i)); 
         }
         return sb.toString();
     }
